@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Corbrain - About Us</title>
+  <link rel="icon" href="logo2.png" type="image/png" sizes="90x90">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Trebuchet MS', sans-serif;
+      background-color: #00002b; /* Navy blue background */
+      color: #e4e4ff; /* Subtle lilac text */
+    }
+    .header {
+      background-image: url('untitled.png');
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100px;
+      border-top: 15px solid #00002b; /* Navy blue border */
+      position: relative;
+    }
+    .logo {
+      margin-right: 12px;
+      height: 130px; /* Adjusted to be consistent with other pages */
+      width: auto;
+      position: relative;
+      top: 8px; /* Adjusted for smaller logo */
+    }
+    .nav-links {
+      display: flex;
+      gap: 40px;
+    }
+    .nav-links a {
+      color: #e4e4ff; /* Subtle lilac tint */
+      text-decoration: none;
+      font-size: 28px;
+      font-weight: bold;
+      position: relative;
+    }
+    .nav-links a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: #e4e4ff;
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover:after {
+      width: 100%;
+    }
+    .nav-links a:hover {
+      text-decoration: none;
+    }
+    
+    /* Content styling */
+    .content {
+      width: 100%;
+      margin: 0;
+      padding: 40px;
+      background-color: #001a3d;
+      box-sizing: border-box;
+      min-height: calc(100vh - 100px - 77px);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Background elements updated with violet tones */
+    .bg-element {
+      position: absolute;
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .bg-element.network {
+      top: 10%;
+      right: 5%;
+      font-size: 300px;
+      color: #6c25fb; /* Changed from blue to violet to match other pages */
+      transform: rotate(15deg);
+    }
+    
+    .bg-element.data {
+      bottom: 10%;
+      left: 5%;
+      font-size: 250px;
+      color: #6c25fb; /* Changed from blue to violet to match other pages */
+      transform: rotate(-10deg);
+    }
+    
+    /* Hero section updated with violet gradient */
+    .about-hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 60px 0;
+      margin-bottom: 80px;
+      background: linear-gradient(135deg, #2e0082 0%, #3a0099 100%); /* Changed to match HOME page gradient */
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(60, 100, 200, 0.2);
+      overflow: hidden;
+    }
+    
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 40%, rgba(108, 37, 251, 0.1) 0%, transparent 70%); /* Changed to violet */
+      z-index: -1;
+    }
+    
+    .about-hero h2 {
+      font-size: 56px;
+      color: #ffffff;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      animation: fadeInFromTop 1s ease-out;
+    }
+    
+    .about-hero p {
+      font-size: 26px;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+      color: #e4e4ff;
+      animation: fadeInFromBottom 1.2s ease-out;
+    }
+    
+    /* Main content container */
+    .page-content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    /* Origin story section with violet styling */
+    .origin-story {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 40px;
+      background-color: rgba(46, 0, 130, 0.2); /* Changed to match violet tone from other pages */
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .story-heading {
+      font-size: 42px;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .story-heading::after {
+      content: '';
+      position: absolute;
+      left: calc(50% - 40px);
+      bottom: -10px;
+      width: 80px;
+      height: 3px;
+      background: #6c25fb; /* Changed from blue to violet */
+    }
+    
+    /* Quote container with violet styling */
+    .quote-container {
+      position: relative;
+      margin: 0 auto;
+      max-width: 900px;
+      padding: 30px 40px;
+      background-color: rgba(46, 0, 130, 0.3); /* Adjusted to match other violet elements */
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border-left: 4px solid #6c25fb; /* Changed from blue to violet */
+    }
+    
+    .quote-container::before {
+      content: '"';
+      position: absolute;
+      top: -30px;
+      left: 20px;
+      font-size: 100px;
+      color: rgba(255, 255, 255, 0.1);
+      font-family: serif;
+    }
+    
+    .quote-container p {
+      font-size: 24px;
+      font-style: italic;
+      line-height: 1.6;
+      color: #ffffff;
+    }
+    
+    .story-text {
+      font-size: 22px;
+      line-height: 1.8;
+      color: #e4e4ff;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    /* Vision and mission cards with violet styling */
+    .vision-mission {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin: 20px 0;
+    }
+    
+    @media (max-width: 900px) {
+      .vision-mission {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .info-card {
+      padding: 40px;
+      background-color: rgba(46, 0, 130, 0.4); /* Adjusted to match HOME page benefit boxes */
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+      border-top: 4px solid #6c25fb; /* Changed from blue to violet */
+    }
+    
+    .info-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .info-card h3 {
+      font-size: 32px;
+      margin-bottom: 25px;
+      color: #ffffff;
+      text-align: center;
+    }
+    
+    .info-card p {
+      font-size: 20px;
+      line-height: 1.7;
+      color: #e4e4ff;
+    }
+    
+    /* Impact section with violet styling */
+    .impact-section {
+      background-color: rgba(46, 0, 130, 0.3); /* Adjusted to match other violet elements */
+      border-radius: 20px;
+      padding: 50px;
+      margin-top: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .impact-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(108, 37, 251, 0.05) 0%, transparent 50%); /* Changed from blue to violet */
+      z-index: -1;
+    }
+    
+    .impact-section h3 {
+      font-size: 38px;
+      color: #ffffff;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .impact-text {
+      font-size: 22px;
+      line-height: 1.8;
+      color: #e4e4ff;
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    /* Footer standardization */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #00002b;
+      color: #e4e4ff;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 16px; /* Standardized font size */
+    }
+    
+    .footer a {
+      color: #ffffff;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 16px; /* Standardized font size */
+    }
+    
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    
+    .contact-email {
+      margin-top: 10px;
+      font-size: 16px; /* Standardized font size */
+    }
+    
+    /* Animations */
+    @keyframes fadeInFromTop {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadeInFromBottom {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Standardize scrollbar styling across the site */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background-color: #6c25fb; /* Violet color for consistency */
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background-color: rgba(0, 26, 61, 0.2); /* Lighter track for better contrast */
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <div class="header">
+    <a href="HOME.html">
+      <img src="logo.png" alt="Corbrain Logo" class="logo">
+    </a>
+    <div class="nav-links">
+      <a href="HOME.html">Home</a>
+      <a href="PRODUCTOS.html">Product</a>
+      <a href="SOBRENOSOTROS.html">About Us</a>
+      <a href="CONTACTO.html">Contact</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <!-- Background elements -->
+    <div class="bg-element network">
+      <i class="fas fa-network-wired"></i>
+    </div>
+    <div class="bg-element data">
+      <i class="fas fa-database"></i>
+    </div>
+
+    <!-- Hero section -->
+    <div class="about-hero">
+      <h2>About Us</h2>
+      <p>Building the future of unified network management</p>
+    </div>
+    
+    <div class="page-content">
+      <!-- Origin story section -->
+      <div class="origin-story fade-in">
+        <h2 class="story-heading">Our Story</h2>
+        
+        <div class="story-text">
+          <p>At Corbrain, we believe that deep network knowledge is just as important as the vision that drives it. Our story began with a simple yet powerful question:</p>
+        </div>
+        
+        <div class="quote-container">
+          <p>Why must operators face fragmented systems to manage their networks when technology already allows for integration?</p>
+        </div>
+        
+        <div class="story-text">
+          <p>Corbrain was born as a response to this need. Founded by a team with extensive experience in telecommunications, automation, and software development, our company emerged to transform the way access networks are managed. It wasn't just about creating another tool, but about rethinking the entire network operation experience, from the technical vision to the operational impact.</p>
+        </div>
+      </div>
+      
+      <!-- Vision and mission cards -->
+      <div class="vision-mission">
+        <div class="info-card fade-in">
+          <h3>Our Mission</h3>
+          <p>Our mission is clear: to simplify access network management to unlock the true potential of operators. We believe that automation, centralization, and applied intelligence are not luxuries, but necessary conditions for a more efficient, resilient, and user-centered industry.</p>
+        </div>
+        
+        <div class="info-card fade-in">
+          <h3>Our Vision</h3>
+          <p>We aim to become the strategic partner of operators who bet on intelligent growth. We aspire to lead the future of multivendor network management, offering a platform that not only accompanies technological evolution but anticipates it.</p>
+        </div>
+      </div>
+      
+      <!-- Impact section -->
+      <div class="impact-section fade-in">
+        <h3>Impact & Differentiation</h3>
+        <div class="impact-text">
+          <p>Beyond software, Corbrain drives a new way of thinking about network management: one where technical teams have more time to create, errors are detected before they become problems, and operation ceases to be a burden to become a strategic asset.</p>
+          <p>We're not a large corporation with generic solutions. We are an agile team, deeply focused on the real needs of the sector. Corbrain is a platform, but also a way of working: technical, flexible, close.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 Corbrain. All rights reserved. | <a href="privacy.html">Privacy Policy</a>
+    <div class="contact-email">
+      <a href="mailto:info@corbrain.ai">info@corbrain.ai</a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Target fade-in elements
+      const fadeElems = document.querySelectorAll('.fade-in');
+      
+      // Function to check if element is in viewport
+      function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+          rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.85 &&
+          rect.bottom >= 0
+        );
+      }
+      
+      // Function to handle scroll events
+      function handleScroll() {
+        fadeElems.forEach(elem => {
+          if (isInViewport(elem) && !elem.classList.contains('visible')) {
+            elem.classList.add('visible');
+          }
+        });
+      }
+      
+      // Check on initial load
+      setTimeout(handleScroll, 300);
+      
+      // Add scroll event listener
+      window.addEventListener('scroll', handleScroll);
+    });
+  </script>
+</body>
+</html>

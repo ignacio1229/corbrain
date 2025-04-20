@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Corbrain - Products</title>
+  <link rel="icon" href="logo2.png" type="image/png" sizes="200x200"> <!-- Increased favicon by 40% -->
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Trebuchet MS', sans-serif;
+      background-color: #00002b; /* Navy blue background */
+      color: #e4e4ff; /* Subtle lilac text */
+    }
+    .header {
+      background-image: url('untitled.png');
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100px;
+      border-top: 15px solid #00002b; /* Navy blue border */
+      position: relative; /* Add position relative to properly position the logo */
+    }
+    .logo {
+      margin-right: 12px;
+      height: 130px; /* Reduced from 170px */
+      width: auto; /* Maintain aspect ratio */
+      position: relative;
+      top: 8px; /* Adjusted from 14px to account for smaller size */
+    }
+    .nav-links {
+      display: flex;
+      gap: 40px;
+    }
+    .nav-links a {
+      color: #e4e4ff; /* Subtle lilac tint */
+      text-decoration: none;
+      font-size: 28px;
+      font-weight: bold;
+      position: relative;
+    }
+    .nav-links a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: #e4e4ff;
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover:after {
+      width: 100%;
+    }
+    .nav-links a:hover {
+      text-decoration: none;
+    }
+    .content {
+      width: 100%; /* Occupy full width of the screen */
+      margin: 0;
+      padding: 60px 40px; /* Increased top/bottom padding */
+      background-color: #001a3d; /* Slightly darker blue */
+      box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
+    }
+    .intro-section {
+      max-width: 1600px; /* Increased from 1400px to make it even wider */
+      width: 98%; /* Set to 98% of the container width (up from 95%) */
+      margin: 0 auto 60px;
+      text-align: center;
+      animation: fadeIn 1.2s ease-out;
+      position: relative; /* For proper positioning of the side image */
+      padding: 40px;
+      border-radius: 15px;
+      background-color: rgba(46, 0, 130, 0.08);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+    .intro-section p {
+      font-size: 24px; /* Increased from 22px */
+      line-height: 1.8;
+      margin-bottom: 25px;
+      text-align: left;
+    }
+    .intro-section p:last-child {
+      margin-bottom: 0;
+    }
+    .intro-section-with-image {
+      display: flex;
+      align-items: center;
+      gap: 40px; /* Increased gap for better spacing */
+      margin-top: 50px; /* Add some space above this section */
+      background-color: rgba(46, 0, 130, 0.2); /* Light background to make section stand out */
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .intro-section-with-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 40%, rgba(108, 37, 251, 0.08) 0%, transparent 70%);
+      z-index: 0;
+    }
+    .intro-section-with-image .side-image {
+      flex: 0 0 60%; /* Increased from 45% to 60% to make image larger */
+      border-radius: 15px; /* Increased border radius for smoother corners */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
+      max-height: 600px; /* Increased from 400px to 600px for larger image */
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .intro-section-with-image .side-image:hover {
+      transform: scale(1.02); /* Subtle zoom on hover */
+    }
+    .intro-section-with-image div {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+    .intro-section-with-image p {
+      font-size: 22px; /* Slightly smaller text to balance with larger image */
+      line-height: 1.8;
+      text-align: left;
+      margin-bottom: 20px;
+      color: #f0e4ff; /* Brighter text for better contrast */
+    }
+    .intro-section-with-image p:last-child {
+      margin-bottom: 0;
+    }
+    .content h2 {
+      text-align: center;
+      font-size: 48px; /* Larger title size */
+      color: #e4e4ff; /* Subtle lilac */
+      margin-bottom: 40px;
+      animation: fadeIn 1s ease-out;
+    }
+    .product-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 70px; /* More space between sections */
+    }
+    .section-title {
+      width: 100%;
+      font-size: 38px;
+      color: #f0e4ff;
+      margin-bottom: 30px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #3a0099;
+      text-align: left;
+      animation: slideInFromLeft 1s ease-out;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: #6c25fb;
+      border-radius: 2px;
+    }
+    .product-card {
+      flex: 1 1 calc(50% - 20px); /* Two cards per row */
+      background-color: #2e0082; /* Dark blue-violet */
+      border: 1px solid rgba(108, 37, 251, 0.3);
+      border-radius: 10px;
+      padding: 30px; /* Consistent padding for all cards */
+      margin-bottom: 20px; /* Add space between cards */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      position: relative; /* Add this to position the icon correctly */
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Faster transition */
+      opacity: 0;
+      transform: translateY(10px); /* Reduced Y offset for faster appearance */
+    }
+    .product-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+    .product-card img {
+      display: none; /* Hide the image element completely */
+    }
+    .product-card div {
+      flex: 1;
+      text-align: center;
+      width: 100%;
+    }
+    .product-card h3 {
+      font-size: 28px; /* Larger heading size */
+      color: #f0e4ff; /* Very light lilac */
+      margin-bottom: 10px;
+    }
+    .product-card p {
+      font-size: 20px; /* Larger text size */
+      color: #e4e4ff; /* Subtle lilac */
+      line-height: 1.8;
+    }
+    .icon-container {
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      background-color: #3a0099;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      border: 2px solid #f0e4ff;
+      /* Ensure icon is perfectly circular */
+      min-width: 50px; /* Add fixed width */
+      min-height: 50px; /* Add fixed height */
+      max-width: 50px; /* Limit maximum width */
+      max-height: 50px; /* Limit maximum height */
+      animation: pulse 3s infinite ease-in-out;
+    }
+    .icon-container i {
+      font-size: 24px;
+      color: #f0e4ff;
+    }
+    .product-card.with-icon {
+      display: flex;
+      padding: 30px 25px;
+    }
+    .product-card.with-icon::before {
+      display: none; /* Remove the pseudo-element */
+    }
+    .product-card.with-icon div {
+      flex: 1;
+      margin-left: 0; /* Remove the left margin to eliminate empty space */
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #00002b;
+      color: #e4e4ff;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 16px; /* Standardized font size */
+    }
+    .footer a {
+      color: #ffffff;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 16px; /* Standardized font size */
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    .contact-email {
+      margin-top: 10px;
+      font-size: 16px; /* Standardized font size */
+    }
+    .footer .contact-email a {
+      font-size: 16px; /* Standardized font size */
+      color: #ffffff;
+    }
+    
+    /* Background elements */
+    .bg-element {
+      position: absolute;
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 0;
+      color: #6c25fb;
+    }
+    
+    .bg-element.server {
+      top: 10%;
+      right: 4%;
+      font-size: 230px;
+      transform: rotate(15deg);
+    }
+    
+    .bg-element.code {
+      bottom: 15%;
+      left: 3%;
+      font-size: 210px;
+      transform: rotate(-10deg);
+    }
+    
+    /* Standardize scrollbar styling across the site */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background-color: #6c25fb; /* Violet color for consistency */
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background-color: rgba(0, 26, 61, 0.2); /* Lighter track for better contrast */
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideInFromLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <div class="header">
+    <a href="HOME.html">
+      <img src="logo.png" alt="Corbrain Logo" class="logo">
+    </a>
+    <div class="nav-links">
+      <a href="HOME.html">Home</a>
+      <a href="PRODUCTOS.html">Product</a>
+      <a href="SOBRENOSOTROS.html">About Us</a>
+      <a href="CONTACTO.html">Contact</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <!-- Background elements -->
+    <div class="bg-element server">
+      <i class="fas fa-server"></i>
+    </div>
+    <div class="bg-element code">
+      <i class="fas fa-code"></i>
+    </div>
+
+    <h2>Corbrain® Access</h2>
+    
+    <div class="intro-section">
+      <p>
+        Corbrain® Access is a platform that allows managing ONTs and OLTs from multiple brands through a single interface using standard protocols like SNMP, TR-069, NETCONF, and SSH. This eliminates the need for separate tools for each manufacturer, simplifying operations and significantly reducing complexity and time spent managing infrastructure.
+      </p>
+      <p>
+        One of the key features of Corbrain® Access is its automation and self-configuration capability. The platform automatically handles the initial configuration of devices, eliminating repetitive manual tasks when activating new services or recovering services after technical interventions on ONTs. This frees up technical resources, allowing them to focus on strategic tasks that add greater value to the organization.
+      </p>
+    </div>
+    
+    <h3 class="section-title">Core Features</h3>
+    <div class="product-section">
+      <div class="product-card with-icon">
+        <div class="icon-container">
+          <i class="fas fa-network-wired"></i>
+        </div>
+        <div>
+          <h3>Advanced Network Management</h3>
+          <p>
+            Manage ONTs and OLTs from multiple brands through a single interface using standard protocols like SNMP, TR-069, NETCONF, and SSH.
+          </p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div>
+          <h3>Automation and Self-Configuration</h3>
+          <p>
+            Automate initial device configuration, eliminating repetitive manual tasks and freeing up technical resources for strategic work.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="section-title">Advanced Capabilities</h3>
+    <div class="product-section">
+      <div class="product-card with-icon">
+        <div class="icon-container">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div>
+          <h3>Advanced Monitoring</h3>
+          <p>
+            Real-time monitoring and event correlation provide a complete view of network status, enabling quick incident detection and resolution.
+          </p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div>
+          <h3>OSS/BSS Integration</h3>
+          <p>
+            Integrate with commercial OSS/BSS systems to automate key processes like activation, suspension, and service modification.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="section-title">Business Benefits</h3>
+    <div class="product-section">
+      <div class="product-card with-icon">
+        <div class="icon-container">
+          <i class="fas fa-coins"></i>
+        </div>
+        <div>
+          <h3>Cost Optimization</h3>
+          <p>
+            Simplify, automate, and optimize network management to significantly reduce operational costs and foster business growth.
+          </p>
+        </div>
+      </div>
+      <div class="product-card">
+        <div>
+          <h3>Innovation and Growth</h3>
+          <p>
+            Free up technical resources for strategic tasks, promoting innovation and enabling your business to thrive in a competitive market.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="intro-section intro-section-with-image">
+      <div>
+        <p>
+          Additionally, Corbrain® Access offers an advanced monitoring and event correlation system, providing a real-time comprehensive view of the network's status. This enables operators to quickly detect any incidents, facilitating accurate diagnostics and accelerating problem resolution, thereby improving the quality of service offered to end users.
+        </p>
+        <p>
+          The platform also includes options for integration with commercial OSS/BSS systems to automate key processes such as activation, suspension, and modification of services, ensuring efficient coordination between technical and commercial processes.
+        </p>
+        <p>
+          In summary, Corbrain® Access simplifies, automates, and optimizes access network management, significantly reducing operational costs and freeing up technical resources for strategic tasks, fostering innovation and business growth.
+        </p>
+      </div>
+      <img src="sistema.png" alt="Corbrain System Overview" class="side-image">
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 Corbrain. All rights reserved. | <a href="privacy.html">Privacy Policy</a>
+    <div class="contact-email">
+      <a href="mailto:info@corbrain.ai">info@corbrain.ai</a>
+    </div>
+  </div>
+
+  <script>
+    // Animation for product cards when they come into view
+    document.addEventListener('DOMContentLoaded', function() {
+      const productCards = document.querySelectorAll('.product-card');
+      
+      // Set faster animation delays with shorter time between items
+      productCards.forEach((card, index) => {
+        card.style.transitionDelay = (index * 0.1) + 's'; /* Reduced from 0.2s to 0.1s */
+        card.style.transitionDuration = '0.5s'; /* Reduced from 0.8s to 0.5s */
+        card.style.transitionProperty = 'opacity, transform';
+      });
+      
+      // Function to check if element is in viewport with increased trigger area
+      function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+          rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.95 && /* Increased from 0.85 to 0.95 */
+          rect.bottom >= 0
+        );
+      }
+      
+      // Function to handle scroll events
+      function handleScroll() {
+        productCards.forEach(card => {
+          if (isInViewport(card) && !card.classList.contains('visible')) {
+            card.classList.add('visible');
+          }
+        });
+      }
+      
+      // Check on initial load
+      handleScroll();
+      
+      // Add scroll event listener with more frequent checks
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      
+      // Additionally, make all cards visible after a timeout
+      // This ensures users who scroll quickly still see all content
+      setTimeout(() => {
+        productCards.forEach(card => {
+          if (!card.classList.contains('visible')) {
+            card.classList.add('visible');
+          }
+        });
+      }, 1000); // Show all cards after 1 second regardless of scroll position
+    });
+  </script>
+</body>
+</html>

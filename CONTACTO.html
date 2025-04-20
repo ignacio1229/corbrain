@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Corbrain - Contact</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+      font-family: 'Trebuchet MS', sans-serif;
+      background-color: #00002b; /* Navy blue background */
+      font-size: 24px; /* Base font size */
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      background-image: url('untitled.png');
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100px;
+      border-top: 15px solid #00002b; /* Navy blue border */
+      position: relative; /* Add position relative to properly position the logo */
+    }
+    .logo {
+      margin-right: 13px;
+      height: 130px; /* Reduced from 170px */
+      width: auto; /* Maintain aspect ratio */
+      position: relative;
+      top: 8px; /* Adjusted from 14px to account for smaller size */
+    }
+    .nav-links {
+      display: flex;
+      gap: 40px;
+    }
+    .nav-links a {
+      color: #e4e4ff; /* Subtle lilac tint */
+      text-decoration: none;
+      font-size: 28px;
+      font-weight: bold;
+      position: relative;
+    }
+    .nav-links a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: #e4e4ff;
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover:after {
+      width: 100%;
+    }
+    .nav-links a:hover {
+      text-decoration: none;
+    }
+    .main-content {
+      flex: 1; /* Allow content to grow and push footer down */
+      min-height: calc(100vh - 100px - 77px); /* Match the min-height calculation from other pages */
+      overflow-y: visible; /* Change from auto to visible to prevent scrollbar */
+      padding: 40px;
+      padding-top: 60px; /* Increase top padding to move content down */
+      background-color: #001a3d; /* Slightly darker blue tone */
+      box-sizing: border-box;
+      position: relative;
+    }
+    .main-content::-webkit-scrollbar {
+      width: 10px;
+    }
+    .main-content::-webkit-scrollbar-thumb {
+      background-color: #6c25fb; /* Use standard violet color for consistency */
+      border-radius: 5px;
+    }
+    .main-content::-webkit-scrollbar-track {
+      background-color: rgba(0, 26, 61, 0.2); /* Lighter track for better contrast */
+    }
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #6c25fb; /* Violet color for consistency */
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background-color: rgba(0, 26, 61, 0.2); /* Lighter track for better contrast */
+    }
+    .contact-title-container {
+      position: relative;
+      text-align: center;
+      margin-bottom: 30px; /* Reduced from 50px */
+      padding: 20px; /* Reduced from 30px */
+      border-radius: 20px;
+      background-color: rgba(46, 0, 130, 0.15);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+    }
+    .contact-title-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 40%, rgba(108, 37, 251, 0.1) 0%, transparent 70%);
+      z-index: 0;
+    }
+    .contact-title {
+      font-size: 60px; /* Reduced from 80px */
+      color: #e4e4ff; /* Subtle lilac color */
+      text-align: center;
+      margin-bottom: 5px; /* Reduced from 10px */
+      animation: fadeIn 1s ease-out;
+      position: relative;
+      z-index: 1;
+    }
+    .blue-divider {
+      height: 3px;
+      background-color: #3a0099; /* Blue-violet color */
+      width: 0;
+      margin: 0 auto 15px; /* Reduced from 20px */
+      display: block;
+      animation: expandWidth 1.5s ease-out forwards;
+      position: relative;
+      z-index: 1;
+    }
+    .main-content .contact-email {
+      font-size: 28px; /* Reduced from 32px */
+      color: #e4e4ff;
+      text-align: center;
+      margin-bottom: 30px; /* Reduced from 40px */
+      animation: fadeIn 1.5s ease-out;
+      margin-top: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .main-content .contact-email a {
+      color: #e4e4ff;
+      text-decoration: none;
+      font-size: 28px; /* Reduced from 32px to match parent */
+    }
+    .faqs {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px; /* Reduced from 20px */
+      position: relative;
+    }
+    .faq {
+      background-color: #2e0082; /* Less violet, more blue */
+      color: #f0e4ff; /* Very light lilac color */
+      padding: 15px 20px; /* Reduced from 20px */
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      font-size: 20px; /* Reduced from 22px */
+      border: 1px solid rgba(108, 37, 251, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .faq:hover {
+      background-color: #3a0099; /* Slightly lighter violet */
+      transform: translateX(10px);
+    }
+    .faq::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background-color: #6c25fb;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .faq:hover::before {
+      opacity: 1;
+    }
+    .faq-content {
+      display: none;
+      padding: 20px;
+      background-color: #35126f; /* Slightly lighter violet */
+      color: #f0e4ff; /* Very light lilac color */
+      border-radius: 10px;
+      margin-top: 10px;
+      font-size: 20px;
+      line-height: 1.6;
+      transform-origin: top;
+      transition: all 0.2s ease-out; /* Reduced from 0.4s to 0.2s for faster animation */
+    }
+    .faq.open .faq-content {
+      display: block;
+    }
+    .faq-arrow {
+      margin-left: 10px;
+      transition: transform 0.3s ease;
+      animation: bounce 2s infinite ease-in-out;
+    }
+    .faq.open .faq-arrow {
+      transform: rotate(90deg);
+    }
+    .customer-info {
+      font-size: 24px; /* Reduced from 28px */
+      color: #e4e4ff;
+      margin-top: 40px; /* Reduced from 60px */
+      margin-left: auto;
+      margin-right: auto;
+      width: 80%; /* Increased from 70% to make lines shorter */
+      text-align: center;
+      animation: fadeIn 2s ease-out;
+      position: relative;
+      padding: 25px; /* Reduced from 30px */
+      border-radius: 15px;
+      background-color: rgba(46, 0, 130, 0.1);
+      margin-bottom: 30px; /* Reduced from 40px */
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #00002b;
+      color: #e4e4ff;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 16px; /* Standardized font size */
+      flex-shrink: 0; /* Prevent footer from shrinking */
+    }
+    .footer a {
+      color: #ffffff;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 16px; /* Standardized font size */
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    .footer .contact-email {
+      margin-top: 10px;
+      font-size: 16px; /* Standardized font size */
+    }
+    .footer .contact-email a {
+      font-size: 16px; /* Standardized font size */
+      color: #ffffff;
+    }
+
+    /* Background elements */
+    .bg-element {
+      position: absolute;
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 0;
+      color: #6c25fb;
+    }
+    .bg-element.envelope {
+      top: 8%;
+      right: 5%;
+      font-size: 220px;
+      transform: rotate(15deg);
+    }
+    .bg-element.phone {
+      bottom: 15%;
+      left: 5%;
+      font-size: 200px;
+      transform: rotate(-10deg);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes expandWidth {
+      from { width: 0; }
+      to { width: 200px; }
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+  
+  <!-- Add favicon for browser tab -->
+  <link rel="icon" href="logo2.png" type="image/png" sizes="90x90"> <!-- Increased favicon by 40% -->
+</head>
+<body>
+  <div class="header">
+    <a href="HOME.html">
+      <img src="logo.png" alt="Corbrain Logo" class="logo">
+    </a>
+    <div class="nav-links">
+      <a href="HOME.html">Home</a>
+      <a href="PRODUCTOS.html">Product</a>
+      <a href="SOBRENOSOTROS.html">About Us</a>
+      <a href="CONTACTO.html">Contact</a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <!-- Background elements -->
+    <div class="bg-element envelope">
+      <i class="fas fa-envelope"></i>
+    </div>
+    <div class="bg-element phone">
+      <i class="fas fa-phone-alt"></i>
+    </div>
+    
+    <!-- Enhanced title container -->
+    <div class="contact-title-container">
+      <h2 class="contact-title">Contact</h2>
+      <hr class="blue-divider">
+      <div class="contact-email">
+        <a href="mailto:info@corbrain.ai">info@corbrain.ai</a>
+      </div>
+    </div>
+    
+    <div class="faqs">
+      <div class="faq" onclick="toggleFaq(1)">How can I contact you?<span class="faq-arrow">➔</span></div>
+      <div id="faq1" class="faq-content">You can contact us via email at info@corbrain.ai.</div>
+
+      <div class="faq" onclick="toggleFaq(2)">Can I get a trial version?<span class="faq-arrow">➔</span></div>
+      <div id="faq2" class="faq-content">Please contact us via email for details about trials and samples.</div>
+
+      <div class="faq" onclick="toggleFaq(3)">What is the price of the service?<span class="faq-arrow">➔</span></div>
+      <div id="faq3" class="faq-content">Please inquire privately for pricing, as it varies depending on the contract.</div>
+
+      <div class="faq" onclick="toggleFaq(4)">Is the system customizable and versatile?<span class="faq-arrow">➔</span></div>
+      <div id="faq4" class="faq-content">Yes, the system offers various possibilities and adapted code according to user needs.</div>
+    </div>
+
+    <div class="customer-info">
+      <p>For any inquiries or assistance, please feel free to contact us via the provided email. Our support team is at your disposal to help you with any questions you may have. For any doubts, you can review the common questions in the FAQs section. For a quote, please consult via email with an agent.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 Corbrain. All rights reserved. | <a href="privacy.html">Privacy Policy</a>
+    <div class="contact-email">
+      <a href="mailto:info@corbrain.ai">info@corbrain.ai</a>
+    </div>
+  </div>
+
+  <script>
+    function toggleFaq(faqNumber) {
+      // Get the content element
+      const content = document.getElementById('faq' + faqNumber);
+      const faq = document.querySelector(`.faq[onclick="toggleFaq(${faqNumber})"]`);
+      
+      // Toggle display property with animation
+      if (content.style.display === 'block') {
+        // Instant closing - no animation
+        content.style.display = 'none';
+      } else {
+        content.style.display = 'block';
+        content.style.opacity = '0';
+        content.style.transform = 'scaleY(0)';
+        
+        // Force a reflow to ensure the animation works
+        content.offsetHeight;
+        
+        content.style.opacity = '1';
+        content.style.transform = 'scaleY(1)';
+      }
+      
+      // Toggle arrow rotation
+      faq.classList.toggle('open');
+    }
+    
+    // Initialize FAQs to be closed
+    document.addEventListener('DOMContentLoaded', function() {
+      const faqContents = document.querySelectorAll('.faq-content');
+      faqContents.forEach(content => {
+        content.style.display = 'none';
+        content.style.opacity = '0';
+        content.style.transform = 'scaleY(0)';
+      });
+    });
+  </script>
+</body>
+</html>

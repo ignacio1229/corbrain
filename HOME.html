@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Corbrain - Home</title>
+  <link rel="icon" href="logo2.png" type="image/png" sizes="90x90">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Trebuchet MS', sans-serif;
+      background-color: #00002b; /* Navy blue background */
+      color: #e4e4ff; /* Subtle lilac text */
+    }
+    .header {
+      background-image: url('untitled.png');
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100px;
+      border-top: 15px solid #00002b; /* Navy blue border */
+      position: relative; /* Add position relative to properly position the logo */
+    }
+    .logo {
+      margin-right: 12px;
+      height: 130px; /* Reduced from 170px */
+      width: auto;
+      position: relative;
+      top: 8px; /* Adjusted from 14px to account for smaller size */
+    }
+    .nav-links {
+      display: flex;
+      gap: 40px;
+    }
+    .nav-links a {
+      color: #e4e4ff; /* Subtle lilac tint */
+      text-decoration: none;
+      font-size: 28px;
+      font-weight: bold;
+      position: relative;
+    }
+    .nav-links a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: #e4e4ff;
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover:after {
+      width: 100%;
+    }
+    .nav-links a:hover {
+      text-decoration: none;
+    }
+    .content {
+      width: 100%; /* Occupy full width of the screen */
+      margin: 0;
+      padding: 60px 40px 80px; /* Increased bottom padding */
+      background-color: #001a3d; /* Slightly darker blue */
+      box-sizing: border-box;
+      min-height: calc(100vh - 100px - 77px); /* Ensure content takes up minimum full height minus header and footer */
+      position: relative;
+      overflow: hidden;
+    }
+    .banner {
+      text-align: center;
+      margin-bottom: 100px; /* Increased from 60px */
+      animation: fadeIn 1.2s ease-out;
+      position: relative;
+      z-index: 1;
+      padding: 50px 20px; /* Increased top/bottom padding from 40px */
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(46, 0, 130, 0.4) 0%, rgba(58, 0, 153, 0.4) 100%);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(108, 37, 251, 0.1);
+    }
+    .banner h1 {
+      font-size: 68px;
+      margin: 0 0 20px 0;
+      color: #f0e4ff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      animation: slideInFromLeft 1.5s ease-out;
+    }
+    .banner p {
+      font-size: 28px;
+      max-width: 1000px;
+      margin: 0 auto;
+      line-height: 1.6;
+      animation: slideInFromRight 1.8s ease-out;
+    }
+    .section-title {
+      width: 100%;
+      font-size: 48px; /* Increased from 38px */
+      color: #f0e4ff;
+      margin-bottom: 60px; /* Increased from 40px */
+      padding-bottom: 15px; /* Increased from 10px */
+      border-bottom: 3px solid #3a0099; /* Increased border thickness from 2px */
+      text-align: center;
+      text-transform: uppercase; /* Added uppercase for emphasis */
+      letter-spacing: 1px; /* Added letter spacing */
+      font-weight: bold; /* Added bold weight */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Added shadow for depth */
+      position: relative;
+      z-index: 1;
+    }
+    .offerings-container {
+      margin-bottom: 120px; /* Increased from 70px */
+    }
+    .offerings-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 60px; /* Increased from 40px */
+    }
+    .offering-row {
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #2e0082 0%, #3a0099 100%);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.4s ease;
+      min-height: 300px;
+      position: relative;
+      border: 1px solid rgba(108, 37, 251, 0.2);
+    }
+    .offering-row:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+    .offering-image {
+      width: 40%;
+      height: 100%;
+      min-height: 300px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .offering-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(46, 0, 130, 0.4);
+    }
+    .offering-content {
+      width: 60%;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .offering-icon {
+      background-color: rgba(255, 255, 255, 0.15);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 36px;
+      color: #ffffff;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      animation: pulse 3s infinite ease-in-out;
+    }
+    .offering-row:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    .offering-title {
+      font-size: 32px;
+      margin-bottom: 15px;
+      color: #ffffff;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    .offering-description {
+      font-size: 20px;
+      line-height: 1.6;
+      color: #f0e4ff;
+    }
+    @media (max-width: 768px) {
+      .offering-row, .offering-row:nth-child(even) {
+        flex-direction: column;
+      }
+      .offering-image, .offering-content {
+        width: 100%;
+      }
+      .offering-image {
+        min-height: 200px;
+      }
+    }
+    .benefits {
+      margin-bottom: 70px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    .benefit-box {
+      background-color: #2e0082;
+      border-radius: 10px;
+      padding: 30px;
+      flex: 1 1 calc(50% - 15px);
+      min-width: 300px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .benefit-box.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .benefit-box h3 {
+      font-size: 26px;
+      margin-bottom: 15px;
+      color: #f0e4ff;
+    }
+    .benefit-box p {
+      font-size: 20px;
+      line-height: 1.6;
+    }
+    .cta-container {
+      display: flex;
+      gap: 40px; /* Increased from 30px */
+      margin-top: 80px; /* Increased from 60px */
+      flex-wrap: nowrap;
+    }
+    .cta-section {
+      background: linear-gradient(135deg, #3a0099, #4b10b8); /* Gradient background */
+      border-radius: 15px; /* Increased radius for distinction */
+      padding: 50px 40px; /* Increased top/bottom padding from 40px */
+      text-align: center;
+      flex: 1;
+      min-width: 0;
+      animation: fadeIn 1s ease 0.5s forwards;
+      opacity: 0;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25); /* Stronger shadow */
+      border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+      transition: transform 0.3s ease;
+      overflow: hidden;
+    }
+    .cta-section:hover {
+      transform: translateY(-5px);
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 40%, rgba(108, 37, 251, 0.1) 0%, transparent 70%);
+      z-index: -1;
+    }
+    .cta-section h3 {
+      font-size: 40px; /* Increased size from 36px */
+      margin-bottom: 25px;
+      color: #f0e4ff;
+    }
+    .cta-section p {
+      font-size: 24px; /* Increased size from 22px */
+      margin-bottom: 35px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #6c25fb;
+      color: #ffffff;
+      font-size: 24px; /* Increased size from 22px */
+      font-weight: bold;
+      padding: 15px 30px;
+      border-radius: 8px; /* Less rounded corners */
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      min-width: 220px;
+    }
+    .cta-button:hover {
+      background-color: #7d35ff;
+      transform: translateY(-3px);
+    }
+    .cta-button .button-icon {
+      margin-right: 12px;
+      font-size: 24px;
+    }
+    .cta-button:before {
+      display: none;
+    }
+    .cta-button:hover .button-icon {
+      background-color: transparent;
+      transform: none;
+    }
+    @media (max-width: 768px) {
+      .cta-container {
+        flex-wrap: wrap; /* Allow wrapping on smaller screens */
+      }
+      .cta-section {
+        flex: 1 1 100%; /* Full width on small screens */
+        margin-bottom: 20px;
+      }
+      .cta-section h3 {
+        font-size: 32px; /* Smaller on mobile but still larger than before */
+      }
+      .cta-section p {
+        font-size: 22px; /* Adjusted for mobile */
+      }
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #00002b;
+      color: #e4e4ff;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 16px; /* Standardized font size */
+    }
+    .footer a {
+      color: #ffffff;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 16px; /* Standardized font size */
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    .contact-email {
+      margin-top: 10px;
+      font-size: 16px; /* Standardized font size */
+    }
+
+    /* Add more spacing for the Why Choose section */
+    .why-choose-section {
+      margin-top: 40px; /* Reduced from 100px since we now use dividers */
+      margin-bottom: 40px; /* Reduced from 100px since we now use dividers */
+      padding: 50px; /* Increased from 30px */
+      background-color: rgba(46, 0, 130, 0.1); /* Very subtle background */
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Adjust the benefits section margin to work with the container */
+    .why-choose-section .benefits {
+      margin-bottom: 20px; /* Reduced since the container already has margin */
+    }
+    
+    /* Adjust the section title when inside the why choose section */
+    .why-choose-section .section-title {
+      margin-top: 10px; /* Less margin since container has padding */
+    }
+    
+    .why-choose-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 70% 30%, rgba(108, 37, 251, 0.08) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    /* Fixed section divider styling */
+    .section-divider {
+      height: 3px;
+      width: 250px; /* Increased from 150px for better visibility */
+      background: #6c25fb; /* Solid color instead of gradient */
+      margin: 80px auto;
+      opacity: 0.8; /* Increased from 0.7 */
+      border-radius: 2px;
+      box-shadow: 0 0 8px rgba(108, 37, 251, 0.5); /* Added subtle glow effect */
+    }
+    
+    /* Background elements */
+    .bg-element {
+      position: absolute;
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 0;
+      color: #6c25fb;
+    }
+    
+    .bg-element.network {
+      top: 5%;
+      right: 3%;
+      font-size: 250px;
+      transform: rotate(15deg);
+    }
+    
+    .bg-element.data {
+      bottom: 10%;
+      left: 2%;
+      font-size: 200px;
+      transform: rotate(-12deg);
+    }
+
+    /* Standardize scrollbar styling across the site */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background-color: #6c25fb; /* Violet color for consistency */
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background-color: rgba(0, 26, 61, 0.2); /* Lighter track for better contrast */
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideInFromLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes slideInFromRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <div class="header">
+    <a href="HOME.html">
+      <img src="logo.png" alt="Corbrain Logo" class="logo">
+    </a>
+    <div class="nav-links">
+      <a href="HOME.html">Home</a>
+      <a href="PRODUCTOS.html">Product</a>
+      <a href="SOBRENOSOTROS.html">About Us</a>
+      <a href="CONTACTO.html">Contact</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <!-- Background elements -->
+    <div class="bg-element network">
+      <i class="fas fa-network-wired"></i>
+    </div>
+    <div class="bg-element data">
+      <i class="fas fa-database"></i>
+    </div>
+
+    <div class="banner">
+      <h1>Welcome to Corbrain</h1>
+      <p>"Simplifying the process" efficient and fast ONT provisioning</p>
+    </div>
+    
+    <h2 class="section-title">What We Offer</h2>
+    <div class="offerings-container">
+      <div class="offerings-grid">
+        <!-- Unified Management -->
+        <div class="offering-row">
+          <div class="offering-image" style="background-image: url('sistema2.png')"></div>
+          <div class="offering-content">
+            <div class="offering-icon">
+              <i class="fas fa-network-wired"></i>
+            </div>
+            <h3 class="offering-title">Unified Management</h3>
+            <p class="offering-description">Manage devices from multiple manufacturers through a single intuitive interface, reducing complexity and saving time.</p>
+          </div>
+        </div>
+        
+        <!-- Security First -->
+        <div class="offering-row">
+          <div class="offering-image" style="background-image: url('seguridad.png')"></div>
+          <div class="offering-content">
+            <div class="offering-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3 class="offering-title">Security First</h3>
+            <p class="offering-description">Advanced security login methods to protect system access and ensure data integrity at all times.</p>
+          </div>
+        </div>
+        
+        <!-- Advanced Monitoring -->
+        <div class="offering-row">
+          <div class="offering-image" style="background-image: url('analisis.png')"></div>
+          <div class="offering-content">
+            <div class="offering-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 class="offering-title">Advanced Monitoring and Dashboards</h3>
+            <p class="offering-description">Real-time network monitoring with intelligent event correlation reflected in dashboards for efficient issue detection.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-divider"></div>
+    
+    <div class="why-choose-section">
+      <h2 class="section-title">Why Choose Corbrain?</h2>
+      <div class="benefits">
+        <div class="benefit-box">
+          <h3>Operational Cost Reduction</h3>
+          <p>Our platform transforms network infrastructure management, reducing operational costs by up to 40% while improving service quality and customer satisfaction.</p>
+        </div>
+        
+        <div class="benefit-box">
+          <h3>Efficient Automation</h3>
+          <p>We eliminate repetitive tasks that consume your technical team's time, allowing them to focus on strategic innovations that drive business growth.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section-divider"></div>
+    
+    <div class="cta-container">
+      <div class="cta-section">
+        <h3>Ready to Transform Your Network Management?</h3>
+        <p>Discover how Corbrain® Access can help you optimize operations, reduce costs, and improve service quality.</p>
+        <a href="CONTACTO.html" class="cta-button">
+          <span class="button-icon"><i class="fas fa-envelope"></i></span>
+          <span class="button-text">Contact Us Today</span>
+        </a>
+      </div>
+      
+      <div class="cta-section">
+        <h3>Learn About Our Products in Detail</h3>
+        <p>Explore all the features and benefits of our Corbrain® Access solution to understand how it can drive your business forward.</p>
+        <a href="PRODUCTOS.html" class="cta-button">
+          <span class="button-icon"><i class="fas fa-cube"></i></span>
+          <span class="button-text">View Products</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 Corbrain. All rights reserved. | <a href="privacy.html">Privacy Policy</a>
+    <div class="contact-email">
+      <a href="mailto:info@corbrain.ai">info@corbrain.ai</a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Target benefit boxes
+      const benefitBoxes = document.querySelectorAll('.benefit-box');
+      
+      // Function to check if element is in viewport
+      function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+          rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.85 &&
+          rect.bottom >= 0
+        );
+      }
+      
+      // Function to handle scroll events
+      function handleScroll() {
+        benefitBoxes.forEach(box => {
+          if (isInViewport(box) && !box.classList.contains('visible')) {
+            box.classList.add('visible');
+          }
+        });
+      }
+      
+      // Check on initial load
+      handleScroll();
+      
+      // Add scroll event listener
+      window.addEventListener('scroll', handleScroll);
+    });
+  </script>
+</body>
+</html>
